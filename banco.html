@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caixa Eletrônico</title>
+    <script>
+        var nome = prompt("Qual seu nome?")
+        alert("Olá " + nome + ", é um prazer ter você por aqui!")
+
+        var saldo = 50;
+
+        var senha = 3589;
+
+        function inicio() {
+         var escolha = parseInt(prompt("O que gostaria de acessar? 1. Saldo 2. Extrato 3. Depósito 4. Saque 5. Transferência 6. Sair"))
+         switch (escolha) {
+
+            case 1: osaldo();
+                break;
+            case 2: oextrato();
+                break;
+            case 3: odeposito();
+                break;
+            case 4: osaque();
+                break;
+            case 5: otransferencia();
+                break;
+            case 6: sair();
+                break;
+            default: erro();
+                break;
+
+            }
+        }
+        
+        function osaldo() {
+            var numero = parseInt(prompt("Informe a sua senha, por favor! "));
+            
+            if ( numero == senha ) {
+			alert('Seu saldo atual é: ' + saldo);
+			inicio();
+		}
+            else {
+            alert("Senha incorreta!")
+             inicio()
+            }
+        }
+        
+        function oextrato() {
+            var numero = parseInt(prompt("Informe a sua senha, por favor! "));
+            
+            if ( numero == senha ) {
+                document.write("R$3 em Casa de Pão de Queijo" + "<br>" + "R$30 em McDonalds" + "<br>" + "R$24,90 em Sushi do Carmo" + "<br>" + "R$6 em BijuteriasItaquera" + "<br>" + "R$40 em Lojas C&A" + "<br>" + "Transferência pix para Michele Alves")
+            }
+            else{
+                alert("Senha incorreta!")
+                inicio();
+            }
+        }
+        
+        function odeposito() {
+            var numero = parseInt(prompt("Informe a sua senha, por favor! "));
+           
+            if ( numero == senha ) {
+		    var deposito = parseFloat(prompt('Qual o valor para depósito?'));
+			
+		        if (isNaN(deposito) || deposito === '' || deposito === 0) {
+		        alert('Operação não autorizada. Por favor, informe um número.');
+		        odeposito();
+		        } 
+
+                else {
+			    saldo += deposito;
+                alert("Operação realizada com sucesso! :)")
+			    osaldo();
+			    }  
+            }  
+            else {
+               alert("Senha incorreta!")
+               inicio(); 
+
+          }
+        }
+
+		function osaque() {
+
+            var numero = parseInt(prompt("Informe a sua senha, por favor! "));
+
+            if (numero === senha) {
+                
+                var saque = parseFloat(prompt('Qual o valor para saque?'));
+
+			    if (isNaN(saque) || saque === '' || saque === 0 || saldo < saque) {
+				alert("Operação não autorizada.");
+				osaque();
+			    } 
+
+                else {
+				saldo -= saque;
+                alert("Operação realizada com sucesso! :)")
+				osaldo();
+			    }
+            }
+            else {
+                alert("Senha incorreta!")
+                inicio();
+            }
+        
+        }
+
+        function otransferencia () {
+            var numero = parseInt(prompt("Informe a sua senha, por favor! "));
+           
+           if ( senha == numero ) {
+			var conta = parseInt(prompt("Qual é o número da conta do destinatário?"));
+			var transferencia = parseFloat(prompt("Qual será o valor da transferência?"));
+
+            if (isNaN(transferencia) || transferencia === '' ||  transferencia <= 0  || transferencia > saldo) {
+            alert("Operação não autorizada.");
+            otransferencia();
+            }
+            
+
+            saldo -= transferencia;
+            alert("Operação realizada com sucesso! :)");
+            osaldo();
+            
+
+            }
+
+		else {
+            alert("Senha incorreta!");
+			inicio()
+		}
+        }
+        
+
+		function erro() {
+			alert('Por favor, informe um número entre 1 até 6. :)');
+			inicio();
+		}
+
+		function sair() {
+			var confirma = confirm('Você deseja sair?');
+			if (confirma) {
+                alert(nome + ", foi um prazer ter você por aqui! :)")
+				window.close();
+			} else {
+				inicio();
+			}
+		}
+        inicio();
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
